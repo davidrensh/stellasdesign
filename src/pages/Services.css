@@ -1,0 +1,13 @@
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    width: 100%;
+    max-width: 300px; /* Adjust as needed */
+  }
+  
+  .card div {
+    margin-bottom: 20px;
+  }
+  

@@ -6,8 +6,10 @@ const Home: React.FC = () => {
   return (
     <Stack horizontalAlign="center" verticalAlign="center" verticalFill tokens={{ childrenGap: 20 }} padding={20}>
       <Text variant="xxLarge">Welcome to Stella's Design!</Text>
-      <Text variant="large">Your go-to salon for amazing hair designs.</Text>
-      
+      <Text variant="large">Your go-to salon for amazing professional hair designs.</Text>
+      <Text variant="large" style={{ fontWeight: 'bold', marginTop: 10 }}>
+        Grand Opening at our new location: August 19, 2024.
+      </Text>
       {/* Add the static image */}
       <Image
         src="/images/stellasdesign_main.jpg"

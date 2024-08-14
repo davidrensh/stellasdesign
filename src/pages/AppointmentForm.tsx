@@ -28,7 +28,9 @@ const AppointmentForm: React.FC = () => {
   return (
     <Stack horizontalAlign="center" verticalAlign="center" verticalFill tokens={{ childrenGap: 20 }} padding={20}>
       <Text variant="xLarge">Schedule an Appointment</Text>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <Text variant="large">Call Stella: 425-737-7342</Text>
+      <Text variant="large">Or call: 425-908-0277</Text>
+      {/* <form onSubmit={handleSubmit(onSubmit)}>
         <Stack tokens={{ childrenGap: 15 }}>
           <TextField label="Name" {...register('name', { required: true })} />
           <TextField label="Phone" {...register('phone', { required: true })} />
@@ -36,7 +38,7 @@ const AppointmentForm: React.FC = () => {
           <TextField label="Time" {...register('time', { required: true })} type="time" />
           <PrimaryButton type="submit" text="Schedule Appointment" />
         </Stack>
-      </form>
+      </form> */}
     </Stack>
   );
 };
