@@ -8,22 +8,6 @@ const PhotoAlbum: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   const fetchImages = async () => {
-  //     try {
-  //       const imagesRef = ref(storage, 'hair-designs/');
-  //       const imageList = await listAll(imagesRef);
-  //       const urls = await Promise.all(imageList.items.map(item => getDownloadURL(item)));
-  //       setImages(urls);
-  //     } catch (err) {
-  //       setError('Failed to load images. Please try again later.');
-  //       console.error('Error fetching images:', err);
-  //     }
-  //   };
-
-  //   fetchImages();
-  // }, []);
-
   return (
     <div
       style={{

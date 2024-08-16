@@ -1,14 +1,35 @@
-import React from 'react';
-import { CommandBar, ICommandBarItemProps, DefaultButton, IButtonProps } from '@fluentui/react';
+import React, { useState } from 'react';
+import { CommandBar, ICommandBarItemProps, DefaultButton, IButtonProps, IconButton, ContextualMenu, IContextualMenuProps } from '@fluentui/react';
+import './Header.css'; // Ensure this import is correct and in the right place
 
 const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const items: ICommandBarItemProps[] = [
     { key: 'home', text: 'Home', href: '/' },
     { key: 'photoAlbum', text: 'Photo Album', href: '/photo-album' },
     { key: 'services', text: 'Services', href: '/services' },
+  ];
+
+  const farItems: ICommandBarItemProps[] = [
     { key: 'schedule', text: 'Schedule Appointment', href: '/schedule' },
     { key: 'contact', text: 'Contact Us', href: '/contact-us' },
   ];
+
+  const burgerMenuItem: ICommandBarItemProps = {
+    key: 'burgerMenu',
+    iconProps: { iconName: 'GlobalNavButton' },
+    onClick: () => setIsMenuOpen(!isMenuOpen),
+    ariaLabel: 'Menu',
+    styles: {
+      root: {
+        display: 'none', // Hidden by default
+        '@media only screen and (max-width: 768px)': {
+          display: 'block',
+        },
+      },
+    },
+  };
 
   const CustomButton: React.FC<IButtonProps> = (props) => {
     return (
@@ -21,10 +42,10 @@ const Header: React.FC = () => {
             border: 'none',
             backgroundColor: 'transparent',
             boxShadow: 'none',
-            color: 'black', // Ensure text is visible against the background
+            color: 'black',
             selectors: {
               ':hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.1)', // Optional slight hover effect
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
               },
               ':focus': {
                 border: 'none',
@@ -40,25 +61,53 @@ const Header: React.FC = () => {
     );
   };
 
+  const menuProps: IContextualMenuProps = {
+    items: [...items, ...farItems],
+    onDismiss: () => setIsMenuOpen(false),
+  };
+
   return (
-    <CommandBar
-      items={items}
-      buttonAs={CustomButton}
-      styles={{
-        root: {
-          padding: '0 20px',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Half transparent white background
-          boxShadow: 'none',
-          borderBottom: 'none',
-          position: 'absolute', // Positioning to ensure it overlays the background image
-          width: '100%', // Ensure it covers the full width
-          zIndex: 1000, // Bring it to the front
-        },
-        primarySet: {
-          childrenGap: 15,
-        },
-      }}
-    />
+    <div style={{ position: 'relative', zIndex: 1000 }}>
+      <CommandBar
+        items={[burgerMenuItem, ...items]} // Add burger menu item here
+        farItems={farItems}
+        buttonAs={CustomButton}
+        styles={{
+          root: {
+            padding: '0 10px',
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+            boxShadow: 'none',
+            borderBottom: 'none',
+            position: 'absolute',
+            width: '100%',
+          },
+          primarySet: {
+            childrenGap: 10,
+            display: 'flex',
+            '@media only screen and (max-width: 768px)': {
+              childrenGap: 5,
+            },
+          },
+          secondarySet: {
+            childrenGap: 10,
+            display: 'flex',
+            '@media only screen and (max-width: 768px)': {
+              childrenGap: 5,
+            },
+          },
+        }}
+      />
+      {isMenuOpen && (
+        <ContextualMenu
+          {...menuProps}
+          target={`#header-menu`}
+          gapSpace={0}
+          beakWidth={0}
+          alignTargetEdge={true}
+          directionalHintFixed={true}
+        />
+      )}
+    </div>
   );
 };
 
