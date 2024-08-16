@@ -4,6 +4,15 @@ import './Services.css'; // Ensure you have this CSS file for styling
 
 const Services: React.FC = () => {
   return (
+    <div
+    style={{
+      backgroundImage: `url('/images/bg3.png')`, // Replace with the path to your background image
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      minHeight: '100vh', // Ensure the background covers the entire viewport height
+      padding: '20px', // Optional: Add padding to keep the content within view
+    }}
+  >
     <Stack tokens={{ childrenGap: 20 }} padding={20}>
       <Stack horizontal tokens={{ childrenGap: 20 }} wrap>
         {/* Haircuts & Other Card */}
@@ -225,6 +234,7 @@ const Services: React.FC = () => {
         </div>
       </Stack>
     </Stack>
+    </div>
   );
 };
 

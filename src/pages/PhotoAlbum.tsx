@@ -8,35 +8,45 @@ const PhotoAlbum: React.FC = () => {
   const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const imagesRef = ref(storage, 'hair-designs/');
-        const imageList = await listAll(imagesRef);
-        const urls = await Promise.all(imageList.items.map(item => getDownloadURL(item)));
-        setImages(urls);
-      } catch (err) {
-        setError('Failed to load images. Please try again later.');
-        console.error('Error fetching images:', err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchImages = async () => {
+  //     try {
+  //       const imagesRef = ref(storage, 'hair-designs/');
+  //       const imageList = await listAll(imagesRef);
+  //       const urls = await Promise.all(imageList.items.map(item => getDownloadURL(item)));
+  //       setImages(urls);
+  //     } catch (err) {
+  //       setError('Failed to load images. Please try again later.');
+  //       console.error('Error fetching images:', err);
+  //     }
+  //   };
 
-    fetchImages();
-  }, []);
+  //   fetchImages();
+  // }, []);
 
   return (
-    <Stack tokens={{ childrenGap: 10 }} padding={20}>
-      <Text variant="xLarge">Hair Design Gallery</Text>
-      {error ? (
-        <Text variant="large" style={{ color: 'red' }}>{error}</Text>
-      ) : (
-        <Stack horizontal wrap tokens={{ childrenGap: 15 }}>
-          {images.map((url, index) => (
-            <Image key={index} src={url} alt={`Hair Design ${index + 1}`} width={200} height={200} />
-          ))}
-        </Stack>
-      )}
-    </Stack>
+    <div
+      style={{
+        backgroundImage: `url('/images/bg2.png')`, // Path to your background image
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        width: '100%',
+        height: '100vh', // Full viewport height
+      }}
+    >
+      <Stack tokens={{ childrenGap: 10 }} padding={20} styles={{ root: { color: '#ffffff' } }}>
+        <Text variant="xLarge">Hair Design Gallery</Text>
+        {error ? (
+          <Text variant="large" style={{ color: 'red' }}>{error}</Text>
+        ) : (
+          <Stack horizontal wrap tokens={{ childrenGap: 15 }}>
+            {images.map((url, index) => (
+              <Image key={index} src={url} alt={`Hair Design ${index + 1}`} width={200} height={200} />
+            ))}
+          </Stack>
+        )}
+      </Stack>
+    </div>
   );
 };
 

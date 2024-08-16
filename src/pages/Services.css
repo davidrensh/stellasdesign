@@ -2,12 +2,24 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: #fff;
+    background: #e1e9b8;
     width: 100%;
     max-width: 300px; /* Adjust as needed */
   }
-  
+  .card2 {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #d8dbe4;
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+  }
   .card div {
+    /* margin-top: 50px; */
+    margin-bottom: 20px;
+  }
+  .card2 div {
+    margin-top: 50px;
     margin-bottom: 20px;
   }
   

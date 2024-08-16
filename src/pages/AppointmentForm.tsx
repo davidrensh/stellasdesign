@@ -26,6 +26,16 @@ const AppointmentForm: React.FC = () => {
   };
 
   return (
+    <div
+    style={{
+      backgroundImage: `url('/images/bg4.png')`, // Replace with the path to your background image
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      minHeight: '100vh', // Ensure the background covers the entire viewport height
+      padding: '20px', // Optional: Add padding to keep the content within view
+    }}
+  >
+    <div className="card2">
     <Stack horizontalAlign="center" verticalAlign="center" verticalFill tokens={{ childrenGap: 20 }} padding={20}>
       <Text variant="xLarge">Schedule an Appointment</Text>
       <Text variant="large">Call Stella: 425-737-7342</Text>
@@ -40,6 +50,8 @@ const AppointmentForm: React.FC = () => {
         </Stack>
       </form> */}
     </Stack>
+    </div>
+    </div>
   );
 };
 
