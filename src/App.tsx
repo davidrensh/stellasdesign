@@ -8,6 +8,7 @@ import PhotoAlbum from './pages/PhotoAlbum';
 import Services from './pages/Services';
 import AppointmentForm from './pages/AppointmentForm';
 import ContactUs from './pages/ContactUs'; // The new Contact Us page component
+import './components/Header.css'
 
 initializeIcons(); // Initialize Fluent UI icons
 

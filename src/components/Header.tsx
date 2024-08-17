@@ -23,9 +23,29 @@ const Header: React.FC = () => {
     ariaLabel: 'Menu',
     styles: {
       root: {
-        display: 'none', // Hidden by default
+        display: 'block', // Default for mobile
+        '@media only screen and (min-width: 769px)': {
+          display: 'none',
+        },
+      },
+    },
+  };
+
+  const titleItem: ICommandBarItemProps = {
+    key: 'title',
+    text: "Stella's Design",
+    styles: {
+      root: {
+        fontSize: '38px',
+        fontWeight: 'bold',
+        fontFamily: 'Edwardian Script ITC',
+        color: '#333',
+        textAlign: 'center',
+        width: '100%',
+        margin: '0 auto',
         '@media only screen and (max-width: 768px)': {
-          display: 'block',
+          fontSize: '38px',
+          fontFamily: 'Edwardian Script ITC',
         },
       },
     },
@@ -40,7 +60,7 @@ const Header: React.FC = () => {
             fontSize: '18px',
             fontWeight: 'normal',
             border: 'none',
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(255, 255, 255, 0.5) !important', // Semi-transparent white
             boxShadow: 'none',
             color: 'black',
             selectors: {
@@ -60,6 +80,73 @@ const Header: React.FC = () => {
       />
     );
   };
+  const TitleButton: React.FC<IButtonProps> = (props) => {
+    return (
+      <DefaultButton
+        {...props}
+        styles={{
+          root: {
+            fontSize: '38px',
+            fontFamily: 'Edwardian Script ITC',
+            fontWeight: 'normal',
+            border: 'none',
+            backgroundColor: 'rgba(255, 255, 255, 0.5) !important', // Semi-transparent white
+            boxShadow: 'none',
+            color: 'black',
+            selectors: {
+              ':hover': {
+                backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              },
+              ':focus': {
+                border: 'none',
+                boxShadow: 'none',
+              },
+            },
+          },
+          label: {
+            fontSize: '38px',
+          },
+        }}
+      />
+    );
+  };
+  const mobileStyles = {
+    root: {
+      padding: '0 5px',
+      backgroundColor: 'rgba(255, 255, 255, 0.5) !important', // Semi-transparent white
+      boxShadow: 'none',
+      borderBottom: 'none',
+      width: '100%',
+    },
+    primarySet: {
+      childrenGap: 5,
+      display: 'flex',
+      flexDirection: 'column', // Stack title on top of items
+      alignItems: 'center', // Center title
+    },
+    secondarySet: {
+      childrenGap: 5,
+      display: 'flex',
+    },
+  };
+
+  const desktopStyles = {
+    root: {
+      padding: '0 10px',
+      backgroundColor: 'rgba(255, 255, 255, 0.5) !important', // Semi-transparent white
+      boxShadow: 'none',
+      borderBottom: 'none',
+      width: '100%',
+    },
+    primarySet: {
+      childrenGap: 10,
+      display: 'flex',
+    },
+    secondarySet: {
+      childrenGap: 10,
+      display: 'flex',
+    },
+  };
 
   const menuProps: IContextualMenuProps = {
     items: [...items, ...farItems],
@@ -68,39 +155,48 @@ const Header: React.FC = () => {
 
   return (
     <div style={{ position: 'relative', zIndex: 1000 }}>
-      <CommandBar
-        items={[burgerMenuItem, ...items]} // Add burger menu item here
-        farItems={farItems}
-        buttonAs={CustomButton}
+      {/* Burger Menu Button */}
+      <IconButton
+        iconProps={{ iconName: 'GlobalNavButton' }}
+        ariaLabel="Menu"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
         styles={{
           root: {
-            padding: '0 10px',
-            backgroundColor: 'rgba(255, 255, 255, 0.5)',
-            boxShadow: 'none',
-            borderBottom: 'none',
+            display: 'none', // Hidden by default
             position: 'absolute',
-            width: '100%',
-          },
-          primarySet: {
-            childrenGap: 10,
-            display: 'flex',
+            top: '10px',
+            left: '20px',
+            zIndex: 1001,
             '@media only screen and (max-width: 768px)': {
-              childrenGap: 5,
-            },
-          },
-          secondarySet: {
-            childrenGap: 10,
-            display: 'flex',
-            '@media only screen and (max-width: 768px)': {
-              childrenGap: 5,
+              display: 'block',
             },
           },
         }}
       />
+      
+      {/* Desktop CommandBar */}
+      <div className="desktop-command-bar">
+        <CommandBar
+          items={items}
+          farItems={farItems}
+          buttonAs={CustomButton}
+          styles={desktopStyles}
+        />
+      </div>
+
+      {/* Mobile CommandBar */}
+      <div className="mobile-command-bar">
+        <CommandBar
+          items={[titleItem]} // Include title item in mobile CommandBar
+          buttonAs={TitleButton}
+          styles={mobileStyles}
+        />
+       </div>
+
       {isMenuOpen && (
         <ContextualMenu
-          {...menuProps}
-          target={`#header-menu`}
+          items={[...items, ...farItems]}
+          onDismiss={() => setIsMenuOpen(false)}
           gapSpace={0}
           beakWidth={0}
           alignTargetEdge={true}
