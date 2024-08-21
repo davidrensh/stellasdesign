@@ -1,207 +1,142 @@
-import React, { useState } from 'react';
-import { CommandBar, ICommandBarItemProps, DefaultButton, IButtonProps, IconButton, ContextualMenu, IContextualMenuProps } from '@fluentui/react';
-import './Header.css'; // Ensure this import is correct and in the right place
+import React, { useState, useEffect } from 'react';
+import { Toolbar, Button, Menu, MenuTrigger, MenuList, MenuItem } from '@fluentui/react-components';
+import { NavigationRegular } from '@fluentui/react-icons';
+import { useNavigate } from 'react-router-dom';
+import StyledMenuPopover from './StyledMenuPopover';
+import './Header.css';
 
 const Header: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const items: ICommandBarItemProps[] = [
+  const items = [
     { key: 'home', text: 'Home', href: '/' },
     { key: 'photoAlbum', text: 'Photo Album', href: '/photo-album' },
     { key: 'services', text: 'Services', href: '/services' },
-  ];
-
-  const farItems: ICommandBarItemProps[] = [
     { key: 'schedule', text: 'Schedule Appointment', href: '/schedule' },
+    { key: 'about', text: 'About Stella', href: '/about-stella' },
     { key: 'contact', text: 'Contact Us', href: '/contact-us' },
   ];
 
-  const burgerMenuItem: ICommandBarItemProps = {
-    key: 'burgerMenu',
-    iconProps: { iconName: 'GlobalNavButton' },
-    onClick: () => setIsMenuOpen(!isMenuOpen),
-    ariaLabel: 'Menu',
-    styles: {
-      root: {
-        display: 'block', // Default for mobile
-        '@media only screen and (min-width: 769px)': {
-          display: 'none',
-        },
-      },
-    },
-  };
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const titleItem: ICommandBarItemProps = {
-    key: 'title',
-    text: "Stella's Design",
-    styles: {
-      root: {
-        fontSize: '38px',
-        fontWeight: 'bold',
-        fontFamily: 'Edwardian Script ITC',
-        color: '#333',
-        textAlign: 'center',
-        width: '100%',
-        margin: '0 auto',
-        '@media only screen and (max-width: 768px)': {
-          fontSize: '38px',
-          fontFamily: 'Edwardian Script ITC',
-        },
-      },
-    },
-  };
-
-  const CustomButton: React.FC<IButtonProps> = (props) => {
-    return (
-      <DefaultButton
-        {...props}
-        styles={{
-          root: {
-            fontSize: '18px',
-            fontWeight: 'normal',
-            border: 'none',
-            backgroundColor: 'rgba(255, 255, 255, 0.5) !important', // Semi-transparent white
-            boxShadow: 'none',
-            color: 'black',
-            selectors: {
-              ':hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.1)',
-              },
-              ':focus': {
-                border: 'none',
-                boxShadow: 'none',
-              },
-            },
-          },
-          label: {
-            fontSize: '18px',
-          },
-        }}
-      />
-    );
-  };
-  const TitleButton: React.FC<IButtonProps> = (props) => {
-    return (
-      <DefaultButton
-        {...props}
-        styles={{
-          root: {
-            fontSize: '38px',
-            fontFamily: 'Edwardian Script ITC',
-            fontWeight: 'normal',
-            border: 'none',
-            backgroundColor: 'rgba(255, 255, 255, 0.5) !important', // Semi-transparent white
-            boxShadow: 'none',
-            color: 'black',
-            selectors: {
-              ':hover': {
-                backgroundColor: 'rgba(0, 0, 0, 0.1)',
-              },
-              ':focus': {
-                border: 'none',
-                boxShadow: 'none',
-              },
-            },
-          },
-          label: {
-            fontSize: '38px',
-          },
-        }}
-      />
-    );
-  };
-  const mobileStyles = {
-    root: {
-      padding: '0 5px',
-      backgroundColor: 'rgba(255, 255, 255, 0.5) !important', // Semi-transparent white
-      boxShadow: 'none',
-      borderBottom: 'none',
-      width: '100%',
-    },
-    primarySet: {
-      childrenGap: 5,
-      display: 'flex',
-      flexDirection: 'column', // Stack title on top of items
-      alignItems: 'center', // Center title
-    },
-    secondarySet: {
-      childrenGap: 5,
-      display: 'flex',
-    },
-  };
-
-  const desktopStyles = {
+  const toolbarStyles = {
     root: {
       padding: '0 10px',
-      backgroundColor: 'rgba(255, 255, 255, 0.5) !important', // Semi-transparent white
+      backgroundColor: 'rgba(255, 255, 255, 0.5)',
       boxShadow: 'none',
       borderBottom: 'none',
       width: '100%',
-    },
-    primarySet: {
-      childrenGap: 10,
       display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      position: 'relative' as 'relative',
     },
-    secondarySet: {
-      childrenGap: 10,
+    title: {
+      fontSize: '38px',
+      fontWeight: 'bold',
+      fontFamily: 'Edwardian Script ITC',
+      color: '#333',
+      textAlign: 'left',
+      margin: '0 auto',
+    } as React.CSSProperties,
+    mobileMenuButton: {
+      display: isMobile ? 'block' : 'none',
+      border: 'none',
+      boxShadow: 'none',
+      color: 'black',
+      ':hover': {
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      }
+    },
+    button: {
+      fontSize: '16px',
+      fontWeight: 'normal',
+      border: 'none',
+      backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      boxShadow: 'none',
+      color: 'black',
+    },
+    menuList: {
+      padding: '0',
+      margin: '0',
+      backgroundColor: '#ffffff',
+    },
+    menuItem: {
+      backgroundColor: '#ffffff',
+      color: 'black',
+      selectors: {
+        ':hover': {
+          backgroundColor: '#f0f0f0',
+        },
+      },
+    },
+    mobileHeader: {
       display: 'flex',
-    },
-  };
-
-  const menuProps: IContextualMenuProps = {
-    items: [...items, ...farItems],
-    onDismiss: () => setIsMenuOpen(false),
+      alignItems: 'center',
+      gap: '10px',
+      backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    }
   };
 
   return (
-    <div style={{ position: 'relative', zIndex: 1000 }}>
-      {/* Burger Menu Button */}
-      <IconButton
-        iconProps={{ iconName: 'GlobalNavButton' }}
-        ariaLabel="Menu"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        styles={{
-          root: {
-            display: 'none', // Hidden by default
-            position: 'absolute',
-            top: '10px',
-            left: '20px',
-            zIndex: 1001,
-            '@media only screen and (max-width: 768px)': {
-              display: 'block',
-            },
-          },
-        }}
-      />
-      
-      {/* Desktop CommandBar */}
-      <div className="desktop-command-bar">
-        <CommandBar
-          items={items}
-          farItems={farItems}
-          buttonAs={CustomButton}
-          styles={desktopStyles}
-        />
-      </div>
+    <div>
+      {/* Desktop Toolbar */}
+      {!isMobile && (
+        <Toolbar style={toolbarStyles.root}>
+          <div style={toolbarStyles.title}>Stella's Design</div>
+          <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)', display: 'flex', gap: '10px' }}>
+            {items.map((item) => (
+              <Button
+                key={item.key}
+                onClick={() => navigate(item.href)}
+                style={toolbarStyles.button}
+              >
+                {item.text}
+              </Button>
+            ))}
+          </div>
+        </Toolbar>
+      )}
 
-      {/* Mobile CommandBar */}
-      <div className="mobile-command-bar">
-        <CommandBar
-          items={[titleItem]} // Include title item in mobile CommandBar
-          buttonAs={TitleButton}
-          styles={mobileStyles}
-        />
-       </div>
-
-      {isMenuOpen && (
-        <ContextualMenu
-          items={[...items, ...farItems]}
-          onDismiss={() => setIsMenuOpen(false)}
-          gapSpace={0}
-          beakWidth={0}
-          alignTargetEdge={true}
-          directionalHintFixed={true}
-        />
+      {/* Mobile Menu */}
+      {isMobile && (
+        <div style={toolbarStyles.mobileHeader}>
+          <Button
+            icon={<NavigationRegular />}
+            aria-label="Menu"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            style={toolbarStyles.mobileMenuButton}
+          />
+          <div style={toolbarStyles.title}>Stella's Design</div>
+          {isMenuOpen && (
+            <Menu open={isMenuOpen}>
+              <MenuTrigger>
+                <StyledMenuPopover>
+                  <MenuList style={toolbarStyles.menuList}>
+                    {items.map((item) => (
+                      <MenuItem
+                        key={item.key}
+                        onClick={() => {
+                          navigate(item.href);
+                          setIsMenuOpen(false);
+                        }}
+                        style={toolbarStyles.menuItem}
+                      >
+                        {item.text}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </StyledMenuPopover>
+              </MenuTrigger>
+            </Menu>
+          )}
+        </div>
       )}
     </div>
   );

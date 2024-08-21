@@ -26,7 +26,7 @@ body, button, input, textarea {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  font-family: 'Edwardian Script ITC';
+  font-family: 'Edwardian Script ITC'!important;
   color: white;
 }
 
