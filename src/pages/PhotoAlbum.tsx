@@ -24,7 +24,7 @@ const PhotoAlbum: React.FC = () => {
         boxSizing: 'border-box',
       }}
     >
-      <Text size={1000} style={{ fontWeight: 'bold', fontSize: '4.5em', marginBottom: 10, color: 'white',  backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+      <Text size={1000} style={{ fontWeight: 'bold', fontSize: '3.5em', marginBottom: 10, color: 'white',  backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
       Stella's Design since 2011
       </Text>
 
@@ -46,7 +46,7 @@ const PhotoAlbum: React.FC = () => {
           style={{ borderBottom: '3px solid #ccc',marginLeft:'10px', marginBottom: '20px', fontSize:'38px!important' }} // Splitter between tabs and content
         >
           <Tab value="compare" style={{ fontSize:'16px' }}>Beauty Compare &nbsp;|</Tab>
-          <Tab value="special" style={{ fontSize:'16px' }}> &nbsp;Special</Tab>
+          <Tab value="special" style={{ fontSize:'16px' }}> &nbsp; &nbsp;Special Style</Tab>
         </TabList>
 
         {selectedTab === 'compare' && (
@@ -58,10 +58,9 @@ const PhotoAlbum: React.FC = () => {
               <Image src="/images/g11.jpg" alt="Hair Design g11" style={{ width: '50%', objectFit: 'cover' }} />
             </Card>
             <Card style={{ display: 'flex', flexDirection: 'row', overflow: 'hidden' }}>
-              <Image src="/images/g20.jpg" alt="Hair Design g20" style={{ width: '25%', objectFit: 'cover' }} />
-              <Image src="/images/g21.jpg" alt="Hair Design g21" style={{ width: '25%', objectFit: 'cover' }} />
-              <Image src="/images/g22.jpg" alt="Hair Design g22" style={{ width: '25%', objectFit: 'cover' }} />
-              <Image src="/images/g23.jpg" alt="Hair Design g23" style={{ width: '25%', objectFit: 'cover' }} />
+              <Image src="/images/g20.jpg" alt="Hair Design g20" style={{ width: '33%', objectFit: 'cover' }} />
+              <Image src="/images/g21.jpg" alt="Hair Design g21" style={{ width: '33%', objectFit: 'cover' }} />
+              <Image src="/images/g22.jpg" alt="Hair Design g22" style={{ width: '33%', objectFit: 'cover' }} />
             </Card>
             <Card style={{ display: 'flex', flexDirection: 'row', overflow: 'hidden' }}>
               <Image src="/images/g30.jpg" alt="Hair Design g30" style={{ width: '50%', objectFit: 'cover' }} />
@@ -88,13 +87,13 @@ const PhotoAlbum: React.FC = () => {
               <Image src="/images/g80.jpg" alt="Hair Design g80" style={{ width: '50%', objectFit: 'cover' }} />
               <Image src="/images/g81.jpg" alt="Hair Design g81" style={{ width: '50%', objectFit: 'cover' }} />
             </Card>
-            <Card style={{ display: 'flex', flexDirection: 'row', overflow: 'hidden' }}>
+            {/* <Card style={{ display: 'flex', flexDirection: 'row', overflow: 'hidden' }}>
               <Image src="/images/g90.jpg" alt="Hair Design g90" style={{ width: '50%', objectFit: 'cover' }} />
               <Image src="/images/g91.jpg" alt="Hair Design g91" style={{ width: '50%', objectFit: 'cover' }} />
-            </Card>
-            <Card style={{ display: 'flex',   borderRadius: '8px', overflow: 'hidden' }}>
+            </Card> */}
+            {/* <Card style={{ display: 'flex',   borderRadius: '8px', overflow: 'hidden' }}>
               <Image src="/images/g0.jpg" alt="Hair Design g0" style={{ width: '100%', objectFit: 'cover' }} />
-            </Card>            
+            </Card>             */}
           </div>
         )}
 
