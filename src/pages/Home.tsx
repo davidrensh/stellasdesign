@@ -12,8 +12,8 @@ const Home: React.FC = () => {
         width: '100%',
         height: '100vh', // Full viewport height
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
         padding: '20px',
         boxSizing: 'border-box',
       }}
@@ -23,25 +23,25 @@ const Home: React.FC = () => {
       <Card
         style={{
           maxWidth: '1000px',
-          padding: '20px',
+          padding: '2px',
           backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
           color: '#ffffff', // Adjust text color for contrast
-          textAlign: 'center',
+          // textAlign: 'center',
           borderRadius: '8px',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-          marginRight: '20px', // Space between text and image
+          // marginRight: '20px', // Space between text and image
         }}
       >
         {/* Welcome Text */}
-        <Text size={600} style={{ fontSize: '2em',fontFamily: 'Verdana',marginBottom: 20 }}>Welcome to Stella's Design</Text>
-        <br />
-        <Text size={300} style={{ fontSize: '1.5em',fontFamily: 'Verdana',marginBottom: 20 }}>Your go-to salon for amazing professional hair designs since 2011.</Text>
-        <br />
-        <Text size={300} style={{ fontSize: '2em',fontFamily: 'Verdana', fontWeight: 'bold', marginTop: '10px' }}>
+        <Text style={{ fontSize: '1.7em',fontFamily: 'Verdana',marginBottom: 0 }}>Welcome to Stella's Design</Text>
+
+        <Text size={300} style={{ fontSize: '1.3em',fontFamily: 'Verdana',marginBottom: 0 }}>Your go-to salon for amazing professional hair designs since 2011.</Text>
+      
+        <Text size={300} style={{ fontSize: '1.6em',fontFamily: 'Verdana', fontWeight: 'bold', marginTop: '10px' }}>
           Grand Opening at our new location: August 19, 2024.
         </Text>
         {/* Contact Details */}
-        <div style={{ marginBottom: '20px' }}>
+        <div >
           <Text size={300}>Phone: 425-737-7342</Text> <br />
 
           <Text size={300}>Hours: Mon-Sat 10:00am-7:00pm</Text> <br />

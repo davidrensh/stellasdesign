@@ -34,8 +34,8 @@ const AppointmentForm: React.FC = () => {
         padding: '20px', // Optional: Add padding to keep the content within view
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center', // Center horizontally
-        justifyContent: 'center', // Center vertically
+        // alignItems: 'center', // Center horizontally
+        // justifyContent: 'center', // Center vertically
       }}
     >
       {/* Title at the top */}
@@ -47,7 +47,7 @@ const AppointmentForm: React.FC = () => {
       }}>
         <Text size={1000} style={{ 
           fontWeight: 'bold',
-          fontSize: '4.5em',
+          fontSize: '1.7em',
           fontFamily: 'Verdana',
           textAlign: 'center',
           color: '#fff', // Optional: Adjust text color for better contrast
