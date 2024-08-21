@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       <Card
         style={{
           maxWidth: '1000px',
-          padding: '2px',
+          padding: '40px',
           backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
           color: '#ffffff', // Adjust text color for contrast
           // textAlign: 'center',
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
         <Text size={300} style={{ fontSize: '1.3em',fontFamily: 'Verdana',marginBottom: 0 }}>Your go-to salon for amazing professional hair designs since 2011.</Text>
       
         <Text size={300} style={{ fontSize: '1.6em',fontFamily: 'Verdana', fontWeight: 'bold', marginTop: '10px' }}>
-          Grand Opening at our new location: August 19, 2024.
+          Grand Opening at our new location: August 25, 2024.
         </Text>
         {/* Contact Details */}
         <div >
