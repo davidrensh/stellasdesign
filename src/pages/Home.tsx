@@ -46,7 +46,8 @@ const Home: React.FC = () => {
 
           <Text size={300}>Hours: Mon-Sat 10:00am-7:00pm</Text> <br />
           <Text size={300}>Email: stellaluo85@gmail.com</Text> <br />
-          <Text size={300}>Address: 28100 Willet Way, Wesley Chapel, FL 33543</Text>
+          <Text size={300}>Address: 28100 Willet Way, Wesley Chapel, FL 33543</Text><br />
+          <Text size={400}>(Inside Salon Lofts Wiregrass)</Text>
         </div>
 
       </Card>

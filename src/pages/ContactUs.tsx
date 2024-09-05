@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, Text } from '@fluentui/react-components';
 import './Services.css'; // Ensure you have this CSS file for styling
+import { Link } from "@fluentui/react-link";
+import { FaFacebook, FaInstagram, FaGoogle } from 'react-icons/fa';
 
 const ContactUs: React.FC = () => {
   return (
@@ -39,9 +41,20 @@ const ContactUs: React.FC = () => {
 
           <Text size={300}>Hours: Mon-Sat 10:00am-7:00pm</Text> <br />
           <Text size={300}>Email: stellaluo85@gmail.com</Text> <br />
-          <Text size={300}>Address: 28100 Willet Way, Wesley Chapel, FL 33543</Text>
+          <Text size={300}>Address: 28100 Willet Way, Wesley Chapel, FL 33543</Text><br />
+          <Text size={400}>(Inside Salon Lofts Wiregrass)</Text>
         </div>
-
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+      <a href="https://www.facebook.com/profile.php?id=100056367653190" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px', color: '#4267B2' }}>
+        <FaFacebook style={{ fontSize: 24 }} />
+      </a>
+      <a href="https://www.instagram.com/stellas_hair__design" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px', color: '#C13584' }} >
+        <FaInstagram style={{ fontSize: 24 }} />
+      </a>
+      <a href="https://www.google.com/search?q=StellasDesign+reviews" target="_blank" rel="noopener noreferrer"  style={{ margin: '0 10px', color: '#4285F4' }} >
+        <FaGoogle style={{ fontSize: 24 }} />
+      </a>
+    </div>
         {/* Google Maps Embed */}
         <div style={{ border: '1px solid #ccc', borderRadius: '8px', overflow: 'hidden', height: '400px' }}>
           <iframe
